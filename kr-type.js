@@ -74,26 +74,31 @@ var HANGUL_MAPPINGS = {
 }
 // ------------------------------------------------------------------------
 
-var input = '귀를 기울이면';
+function convert() {
+	var input = document.getElementById('input').value;
+	var inputN = input.normalize('NFD'); // normalize to destructured unicode
+	var output = '';
+	for (var i = 0; i < inputN.length; ++i) {
+		var c = inputN[i]; // the character in question
+		var cc = c.charCodeAt(0);
 
-var inputN = input.normalize('NFD'); // normalize to destructured unicode
-var output = '';
-for (var i = 0; i < inputN.length; ++i) {
-	var c = inputN[i]; // the character in question
-	var cc = c.charCodeAt(0);
+		// are we hangul? if not, lets get out
+		if (!(
+			(cc >= 4352 && cc <= 4370) || // \u1100 - \u1112 = 1st bit, conso
+			(cc >= 4449 && cc <= 4469) || // \u1161 - \u1175 = 2nd bit, vowel
+			(cc >= 4520 && cc <= 4546)    // \u11A8 - \u11C2 = 3rd bit, conso
+		)) {
+			output += c;
+			continue;
+		}
 
-	// are we hangul? if not, lets get out
-	if (!(
-		(cc >= 4352 && cc <= 4370) || // \u1100 - \u1112 = 1st bit, conso
-		(cc >= 4449 && cc <= 4469) || // \u1161 - \u1175 = 2nd bit, vowel
-		(cc >= 4520 && cc <= 4546)    // \u11A8 - \u11C2 = 3rd bit, conso
-	)) {
-		output += c;
-		continue;
+		output += HANGUL_MAPPINGS[cc];
 	}
 
-	output += HANGUL_MAPPINGS[cc];
+	document.getElementById('output').value = output;
 }
 
-console.log(input);
-console.log(output);
+function inkey() {
+	if (event.keyCode === 13) // enter
+		convert();
+}

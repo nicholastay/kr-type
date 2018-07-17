@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			kr-type
+		</title>
+
+		<meta charset="UTF-8">
+		<meta name="description" content="Korean characters -> Dubulsik layout guide.">
+		<meta name="author" content="Nicholas Tay / @_nexerq">
+		<meta property="og:title" content="kr-type">
+		<meta property="og:description" content="Korean characters -> Dubulsik layout guide.">
+
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+		
+		<style>
+		* {
+		    margin: 0;
+		    padding: 0;
+		}
+		body {
+		    font-family: 'Noto Sans', sans-serif;
+		    height: 100%;
+		    background-color: #202224;
+		    color: #FFFFFF;
+		    margin: 20px;
+		}
+		textarea {
+			background-color: #555555;
+			border: none;
+			padding: 2px 5px;
+			color: white;
+		}
+		button {
+			background-color: #555555;
+			color: white;
+			padding: 2px 5px;
+			border: none;
+		}
+		p {
+			margin-bottom: 45px;
+		}
+		a {
+			color: white;
+		}
+		</style>
+	</head>
+	<body>
+		<p style="margin-bottom: 15px">
+			kr-type v1 - by <a href="https://twitter.com/@_nexerq">@_nexerq</a>
+		</p>
+
+		<p>
+			<label for="input">Input: </label><br>
+			<textarea id="input" placeholder="안녕!" onkeypress="inkey()" rows="15" cols="100"></textarea><br>
+			<button id="okbutton" onclick="convert()">OK</button><br>
+		</p>
+
+		<p>
+			Output:<br>
+			<textarea id="output" rows="15" cols="100" readonly></textarea><br>
+		</p>
+
+		<script type="text/javascript" src="./kr-type.js"></script>
+	</body>
+</html>
